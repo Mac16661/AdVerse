@@ -55,7 +55,15 @@ const TrdSection = ({ background }) => {
             marginRight: "4px",
           }}
         >
-          Y
+          <a href="https://www.youtube.com/" target="_self">
+            <img
+              alt="Youtube Icon"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              src="https://cdn.sanity.io/images/fuvbjjlp/production/82f958b51978ffcb001464840f4499f3f7f2e806-24x24.svg"
+            />
+          </a>
         </p>
         <p
           style={{
@@ -64,7 +72,18 @@ const TrdSection = ({ background }) => {
             marginRight: "4px",
           }}
         >
-          L
+          <a
+            href="https://www.linkedin.com/company/unity-technologies"
+            target="_self"
+          >
+            <img
+              alt="LinkedIn icon"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              src="https://cdn.sanity.io/images/fuvbjjlp/production/dd69f2ffe65cf07cd992ed377edb6320d17695c5-24x24.svg"
+            />
+          </a>
         </p>
         <p
           style={{
@@ -73,7 +92,15 @@ const TrdSection = ({ background }) => {
             marginRight: "4px",
           }}
         >
-          I
+          <a href="https://www.twitter.com/" target="_self">
+            <img
+              alt="Twitter icon"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              src="https://cdn.sanity.io/images/fuvbjjlp/production/08e30b60b2187caae0c71513dca8a24bad28c7c6-25x24.svg"
+            />
+          </a>
         </p>
         <p
           style={{
@@ -82,7 +109,15 @@ const TrdSection = ({ background }) => {
             marginRight: "4px",
           }}
         >
-          T
+          <a href="https://www.facebook.com/" target="_self">
+            <img
+              alt="Facebook icon"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              src="https://cdn.sanity.io/images/fuvbjjlp/production/3c67aed6455caf27f09c3f552c581d0815b1ec01-24x24.svg"
+            />
+          </a>
         </p>
         <p
           style={{
@@ -91,7 +126,15 @@ const TrdSection = ({ background }) => {
             marginRight: "4px",
           }}
         >
-          D
+          <a href="https://www.instagram.com/" target="_self">
+            <img
+              alt="Facebook icon"
+              loading="lazy"
+              decoding="async"
+              data-nimg="fill"
+              src="https://cdn.sanity.io/images/fuvbjjlp/production/0d84cf67aa301c88e9eb1559d8d20ea14b73159a-24x24.svg"
+            />
+          </a>
         </p>
       </div>
     </Wrap>

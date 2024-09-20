@@ -196,11 +196,11 @@ const Stats = () => {
     >
       <Level1 className="col-span-12 flex rounded-md items-center gap-2 px-4 py-2 filter md:p-4 lg:col-span-4 xl:p-6 backdrop-blur-lg">
         <Level201 className="loco-text-heading-sm min-w-[30%] shrink-0 gap-10 pr-4 text-center">
-          200+
+          12K+
         </Level201>
         <Level202 className="loco-text-body max-w-xs">
           {/* end-user platforms supported for running Unity creations² */}
-          metaverse application uses Ad Verse engine
+          metaverse application creators Ad Verse engine
         </Level202>
       </Level1>
 
@@ -258,19 +258,19 @@ const Stats = () => {
         }}
       >
         <Level201 className="loco-text-heading-sm min-w-[30%] shrink-0 gap-10 pr-4 text-center">
-          2.8B
+          3.2B
         </Level201>
         <Level202 className="loco-text-body max-w-xs">
-          daily active user per day supported by Ad Verse engine
+          daily active user per day supported by Ad Verse
         </Level202>
       </div>
 
       <Level1 className="col-span-12 flex rounded-md items-center gap-2 px-4 py-2 filter md:p-4 lg:col-span-4 xl:p-6 backdrop-blur-lg">
         <Level201 className="loco-text-heading-sm min-w-[30%] shrink-0 gap-10 pr-4 text-center">
-          82
+          10M+
         </Level201>
         <Level202 className="loco-text-body max-w-xs">
-          of the top 100 institutions uses Ad Verse engine to grow
+          top institutions uses Ad Verse  to grow
         </Level202>
       </Level1>
     </div>

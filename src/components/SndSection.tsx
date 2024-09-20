@@ -64,7 +64,7 @@ const SndSection = ({ background }) => {
                 paddingLeft: "20px",
               }}
             >
-              Games
+              Metaverse
             </h2>
           </Child3>
           <Child3 style={{ width: "60%" }}>
@@ -78,9 +78,7 @@ const SndSection = ({ background }) => {
                 lineHeight: "24px",
               }}
             >
-              Create and grow amazing games across 20+ platforms and billions of
-              devices with our end-to-end tools and services for creation,
-              launch, and beyond.
+              Enable effective monetization of metaverse applications through contextual, non-disruptive advertising integrated into gameplay.
             </h3>
           </Child3>
         </Child2>
@@ -111,7 +109,7 @@ const SndSection = ({ background }) => {
                 paddingLeft: "20px",
               }}
             >
-              Games
+              Partners
             </h2>
           </Child3>
           <Child3 style={{ width: "60%" }}>
@@ -125,9 +123,9 @@ const SndSection = ({ background }) => {
                 lineHeight: "24px",
               }}
             >
-              Create and grow amazing games across 20+ platforms and billions of
-              devices with our end-to-end tools and services for creation,
-              launch, and beyond.
+              Unleash your ads across the gaming universe! Target players on
+              mobile, PC, console, AR, VR, XR, and immersive metaverse
+              experiences.
             </h3>
           </Child3>
         </Child2>
