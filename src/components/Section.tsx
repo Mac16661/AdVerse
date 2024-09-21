@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef} from "react";
 import { styled } from "styled-components";
 import ArrowBtn from "./ArrowBtn";
 import Stats from "./Stats";
@@ -73,7 +73,12 @@ const ItemText = styled.div`
 
 //@ts-ignore
 const Section = ({ tittle, background }) => {
-  const handleClick = () => {console.log("Try button clicked")}
+  const targetElementRef = useRef(null);
+
+  const handleClick = () => {
+    //@ts-ignore
+    targetElementRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
   return (
     //@ts-ignore
     <Wrap bgimg={background}>
@@ -93,7 +98,8 @@ const Section = ({ tittle, background }) => {
         <ArrowBtn label="TRY NOW" click={handleClick} />
       </ItemText>
       <Stats />
-    </Wrap>
+      <div ref={targetElementRef}>This is the target element.</div>
+    </Wrap >
   );
 };
 
