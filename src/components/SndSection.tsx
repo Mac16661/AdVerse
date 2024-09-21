@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import ArrowBtn from "./ArrowBtn";
+import { Link } from "react-router-dom";
 // import Stats from "./Stats";
 
 const Wrap = styled.div`
@@ -47,6 +48,12 @@ const Child3 = styled.div`
 
 //@ts-ignore
 const SndSection = ({ background }) => {
+  const handleEnableAd = () => {
+    console.log("Enable ad");
+  };
+  const handleCreateAd = () => {
+    console.log("Create ad");
+  };
   return (
     //@ts-ignore
     <Wrap bgimg={background}>
@@ -78,7 +85,8 @@ const SndSection = ({ background }) => {
                 lineHeight: "24px",
               }}
             >
-              Enable effective monetization of metaverse applications through contextual, non-disruptive advertising integrated into gameplay.
+              Enable effective monetization of metaverse applications through
+              contextual, non-disruptive advertising integrated into gameplay.
             </h3>
           </Child3>
         </Child2>
@@ -92,7 +100,9 @@ const SndSection = ({ background }) => {
             paddingRight: "7rem",
           }}
         >
-          <ArrowBtn label="ENABLE AD" />
+          <Link to="/app">
+            <ArrowBtn label="ENABLE AD" click={handleEnableAd} />
+          </Link>
         </div>
       </Parent>
       <Parent style={{ marginRight: "5rem" }}>
@@ -139,7 +149,9 @@ const SndSection = ({ background }) => {
             paddingRight: "7rem",
           }}
         >
-          <ArrowBtn label="CREATE AD" />
+          <Link to="/org">
+            <ArrowBtn label="CREATE AD" click={handleCreateAd} />
+          </Link>
         </div>
       </Parent>
     </Wrap>

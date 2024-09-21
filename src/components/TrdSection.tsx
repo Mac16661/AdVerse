@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 
 const Wrap = styled.div`
-  height: 24.8vh;
+  height: 21.5vh;
   background-size: cover;
   background-color: black;
   display: flex;

@@ -73,6 +73,7 @@ const ItemText = styled.div`
 
 //@ts-ignore
 const Section = ({ tittle, background }) => {
+  const handleClick = () => {console.log("Try button clicked")}
   return (
     //@ts-ignore
     <Wrap bgimg={background}>
@@ -89,7 +90,7 @@ const Section = ({ tittle, background }) => {
         >
           {tittle}
         </h1>
-        <ArrowBtn label="TRY NOW" />
+        <ArrowBtn label="TRY NOW" click={handleClick} />
       </ItemText>
       <Stats />
     </Wrap>
