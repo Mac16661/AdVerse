@@ -1,9 +1,7 @@
-import React from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import Card from "../components/Card";
-import { Fab } from "@mui/material";
-import Icon from "@mui/material/Icon";
+import PopUpInput from "../components/PopUpInput";
 
 const Button = styled.button`
   all: unset;
@@ -11,7 +9,7 @@ const Button = styled.button`
 `;
 
 //@ts-ignore
-export function AddCard({click}) {
+export function AddCard({ click }) {
   return (
     <div
       style={{
@@ -39,8 +37,8 @@ export function AddCard({click}) {
 
 function OrgPage() {
   const handleClick = () => {
-    console.log("Clicked")
-  }
+    console.log("Clicked");
+  };
   return (
     <div>
       <Header />
@@ -70,8 +68,9 @@ function OrgPage() {
           <Card image="/images/5.jpeg" title="CREATE AD" views="1M" />
           <Card image="/images/7.jpg" title="CREATE AD" views="1M" />
           <Card image="/images/8.jpg" title="CREATE AD" views="1M" />
-          <AddCard click={handleClick} />
+          {/* <AddCard click={handleClick} /> */}
         </div>
+        <PopUpInput />
       </div>
     </div>
   );
