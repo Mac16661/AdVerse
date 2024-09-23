@@ -8,6 +8,7 @@ import {
   DialogActions,
 } from "@mui/material/";
 import PricingButton from "./Button";
+import ArrowBtn from "./ArrowBtn";
 
 function PopUpInput() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +58,7 @@ function PopUpInput() {
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <PricingButton click={handleClickOpen} label="CREATE NEW" />
+      <ArrowBtn click={handleClickOpen} label="CREATE NEW" />
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle>Create New Ad</DialogTitle>
         <DialogContent>

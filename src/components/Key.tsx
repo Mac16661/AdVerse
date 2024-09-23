@@ -10,6 +10,7 @@ function Key() {
   });
   const { publicKey, signMessage } = useWallet();
 
+  // TODO: NOT USING
   async function signAndSend() {
     if (!publicKey) return;
 
@@ -45,11 +46,6 @@ function Key() {
   //TODO: need to implement (calls backend and fetches api key(user id) corresponds to the wallet)
   const handleClick = async () => {
     console.log(publicKey);
-
-    //@ts-ignore
-    if (publicKey != null) {
-        signAndSend();
-    };
   };
 
   return (

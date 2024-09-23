@@ -140,6 +140,11 @@ const ButtonProfile = styled.button`
 const Header = () => {
   const [burgerState, setBurgerState] = useState(true);
   const cars = useSelector(selectCar);
+  const [authToken, setAuthToken] = useState({
+    token: "",
+    api_key: "",
+    name: ""
+  });
   // const showBurgerNav = () => {
   //   setBurgerState(true);
   // };
@@ -150,9 +155,47 @@ const Header = () => {
 
   const { publicKey, signMessage } = useWallet();
 
+  async function signAndSend() {
+    if (!publicKey) return;
+    // if (localStorage.getItem("auth")) return;
+
+    const message = new TextEncoder().encode(
+        "Get registered with ads-platform"
+    );
+
+
+    try {
+
+        const signature = await signMessage?.(message);
+        console.log(signature);
+        console.log(publicKey);
+        // @ts-ignore
+        const response = await axios.post(`${URL}/user/registerOrganization`, {
+            signature,
+            wallet_address: publicKey?.toString(),
+            name: "Zomato", // Dummy name
+            org_category: "Food delivery", // Dummy category
+        });
+
+        //   console.table(response);
+        setAuthToken({
+            token: response.data.token,
+            api_key: response.data.api_key,
+            name: response.data.name
+        });
+
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.api_key);
+    } catch (e) {
+        console.log("Err -> ", e);
+        alert("Signin unsuccessful");
+    }
+}
+
   useEffect(() => {
     //@ts-ignore
     localStorage.setItem("pubKey", publicKey?.toString());
+    signAndSend();
   }, [publicKey]);
 
   return (
@@ -204,11 +247,9 @@ const Header = () => {
               transition: "all 0.3s ease-in-out",
               height: "30px",
               overflow: "hidden",
-
               overflowY: "hidden",
               scrollBehavior: "auto",
               scrollbarWidth: "none",
-
               WebkitOverflowScrolling: "touch",
             }}
           />
@@ -235,11 +276,9 @@ const Header = () => {
               transition: "all 0.3s ease-in-out",
               height: "30px",
               overflow: "hidden",
-
               overflowY: "hidden",
               scrollBehavior: "auto",
               scrollbarWidth: "none",
-
               WebkitOverflowScrolling: "touch",
             }}
           />

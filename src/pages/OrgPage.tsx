@@ -1,44 +1,41 @@
 import Header from "../components/Header";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Card from "../components/Card";
 import PopUpInput from "../components/PopUpInput";
 
-const Button = styled.button`
-  all: unset;
-  cursor: pointer;
-`;
+// const Button = styled.button`
+//   all: unset;
+//   cursor: pointer;
+// `;
 
 //@ts-ignore
-export function AddCard({ click }) {
-  return (
-    <div
-      style={{
-        width: "350px",
-        height: "250px",
-        borderRadius: "10px",
-        backgroundColor: "rgba(21, 21, 20, 255)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Button onClick={click}>
-        <div>
-          <img
-            src="https://static.vecteezy.com/system/resources/thumbnails/001/500/603/small/add-icon-free-vector.jpg"
-            alt="My Image"
-            style={{ width: "90%", height: "30%", borderRadius: "10px" }}
-          />
-        </div>
-      </Button>
-    </div>
-  );
-}
+// export function AddCard({ click }) {
+//   return (
+//     <div
+//       style={{
+//         width: "350px",
+//         height: "250px",
+//         borderRadius: "10px",
+//         backgroundColor: "rgba(21, 21, 20, 255)",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+//       <Button onClick={click}>
+//         <div>
+//           <img
+//             src="https://static.vecteezy.com/system/resources/thumbnails/001/500/603/small/add-icon-free-vector.jpg"
+//             alt="My Image"
+//             style={{ width: "90%", height: "30%", borderRadius: "10px" }}
+//           />
+//         </div>
+//       </Button>
+//     </div>
+//   );
+// }
 
 function OrgPage() {
-  const handleClick = () => {
-    console.log("Clicked");
-  };
   return (
     <div>
       <Header />
