@@ -3,16 +3,20 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import ArrowBtn from "./ArrowBtn";
 
+const URL = "https://localhost:8080";
+
 function Key() {
-  const [authToken, setAuthToken] = useState({
-    token: "",
-    api_key: "",
-  });
+  // const [authToken, setAuthToken] = useState({
+  //   token: "",
+  //   api_key: "",
+  //   name: "",
+  // });
+  const [apiKey, setApiKey] = useState("");
   const { publicKey, signMessage } = useWallet();
 
-  // TODO: NOT USING
   async function signAndSend() {
     if (!publicKey) return;
+    if (localStorage.getItem("token")) return;
 
     const message = new TextEncoder().encode(
       "Get registered with ads-platform"
@@ -22,30 +26,42 @@ function Key() {
       const signature = await signMessage?.(message);
       console.log(signature);
       console.log(publicKey);
-
-      const response = await axios.post(`${URL}/user/registerOrganization`, {
+      // @ts-ignore
+      const response = await axios.post(`${URL}/user/v2/register`, {
         signature,
         wallet_address: publicKey?.toString(),
-        name: "Zomato", // Dummy name
-        org_category: "Food delivery", // Dummy category
       });
 
-      setAuthToken({
-        token: response.data.token,
-        api_key: response.data.api_key,
-      });
+      //   console.table(response);
+      // setAuthToken({
+      //   token: response.data.token,
+      //   api_key: response.data.api_key,
+      //   name: response.data.name,
+      // });
+      console.log(response);
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.api_key);
+      localStorage.setItem("name", response.data.name);
+
+      setApiKey(response.data.api_key);
     } catch (e) {
       console.log("Err -> ", e);
       alert("Signin unsuccessful");
     }
   }
 
-  //TODO: need to implement (calls backend and fetches api key(user id) corresponds to the wallet)
+  //TODO: NEED TO UPGRADE TO REDUX
   const handleClick = async () => {
     console.log(publicKey);
+    //@ts-ignore
+    if (localStorage.getItem("token") && localStorage.getItem("userId")) {
+      //@ts-ignore
+      setApiKey(localStorage.getItem("userId"));
+      return;
+    }
+
+    signAndSend();
   };
 
   return (
@@ -58,11 +74,20 @@ function Key() {
         justifyContent: "center",
       }}
     >
-      {authToken.api_key === "" ? (
+      {apiKey === "" || apiKey == null ? (
         <ArrowBtn label="GET API KEY" click={handleClick} />
       ) : (
-        authToken.api_key
+        <ApiKey label={apiKey} />
       )}
+    </div>
+  );
+}
+
+//@ts-ignore
+function ApiKey({ label }) {
+  return (
+    <div style={{}}>
+      <p>{label}</p>
     </div>
   );
 }

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
+import axios from "axios";
 
 const AppContainer = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const FormContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   min-width: 300px; /* minimum width */
   max-width: 30%;
-  margin-top: 19px
+  margin-top: 19px;
 `;
 
 const FormTitle = styled.h2`
@@ -80,16 +81,37 @@ const SubmitButton = styled.button`
   }
 `;
 
+
+const URL = "https://localhost:8080";
+
 const ProfilePage = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    company: "",
     country: "",
-    designation: "",
     category: "",
   });
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    console.log(userId);
+    const getProfile = async () => {
+      const response = await axios.get(`${URL}/user/v2/getProfile`, {
+        //@ts-ignore
+        params: { id: userId }
+      });
+      console.log(response.data);
+      setFormData({
+        name: response.data.name,
+        email: response.data.address,
+        country: response.data.code,
+        category: response.data.category
+      });
+      
+    };
+
+    getProfile();
+  }, []);
 
   //@ts-ignore
   const handleChange = (e) => {
@@ -97,30 +119,45 @@ const ProfilePage = () => {
   };
 
   //@ts-ignore
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    const userId = localStorage.getItem("userId");
+    // const name = formData.name;
+    // const email: formData.email;
+    // const country: formData.country;
+    // const category: formData.category;
+
+    const response = await axios.post(`${URL}/user/v2/saveProfile`, {
+      //@ts-ignore
+      userId,
+      formData
+    });
+
+    // setFormData({
+    //   name: response.data.name,
+    //   email: response.data.address,
+    //   country: response.data.code,
+    //   category: response.data.category
+    // });
+    // console.log(formData);
+    console.log(response.data)
   };
 
   return (
-    <div style={{ display: "flex", flex: 1 }}>
+    <div style={{ display: "flex", flex: 1 , width:"100%"}}>
       <Header />
-      <AppContainer style={{ background: `url(/images/image.png)`, marginTop: "20px" }}>
+      <AppContainer
+        style={{ background: `url(/images/image.png)`, marginTop: "20px", width: "100%" }}
+      >
         <FormContainer>
           <FormTitle>UPDATE PROFILE</FormTitle>
           <form onSubmit={handleSubmit}>
             <InputField
               type="text"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={handleChange}
-            />
-            <InputField
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              value={formData.lastName}
+              name="name"
+              placeholder="Company Name"
+              value={formData.name}
               onChange={handleChange}
             />
             <InputField
@@ -128,13 +165,6 @@ const ProfilePage = () => {
               name="email"
               placeholder="Email"
               value={formData.email}
-              onChange={handleChange}
-            />
-            <InputField
-              type="text"
-              name="company"
-              placeholder="Company"
-              value={formData.company}
               onChange={handleChange}
             />
             <SelectField
@@ -147,22 +177,14 @@ const ProfilePage = () => {
               <option value="Canada">Canada</option>
               <option value="UK">UK</option>
             </SelectField>
-            <InputField
-              type="text"
-              name="designation"
-              placeholder="Your Designation"
-              value={formData.designation}
-              onChange={handleChange}
-            />
             <SelectField
               name="category"
               value={formData.category}
               onChange={handleChange}
             >
               <option value="">Select Category</option>
-              <option value="Games">Games</option>
-              <option value="Software">Software</option>
-              <option value="Hardware">Hardware</option>
+              <option value="Game">Game dev</option>
+              <option value="Org">Ad creator</option>
             </SelectField>
             <SubmitButton type="submit">Submit</SubmitButton>
           </form>

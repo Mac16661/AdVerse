@@ -136,6 +136,8 @@ const ButtonProfile = styled.button`
   }
 `;
 
+const URL = "https://localhost:8080";
+
 //@ts-ignore
 const Header = () => {
   const [burgerState, setBurgerState] = useState(true);
@@ -143,7 +145,7 @@ const Header = () => {
   const [authToken, setAuthToken] = useState({
     token: "",
     api_key: "",
-    name: ""
+    name: "",
   });
   // const showBurgerNav = () => {
   //   setBurgerState(true);
@@ -155,48 +157,49 @@ const Header = () => {
 
   const { publicKey, signMessage } = useWallet();
 
-  async function signAndSend() {
-    if (!publicKey) return;
-    // if (localStorage.getItem("auth")) return;
-
-    const message = new TextEncoder().encode(
+  useEffect(() => {
+    if (!publicKey) return; // Exit early if publicKey is null/undefined
+  
+    localStorage.setItem("pubKey", publicKey.toString());
+    console.log(publicKey.toString());
+  
+    const signAndSend = async () => {
+      // TODO: Restricts login if token and api key is there
+      if (localStorage.getItem("token") && localStorage.getItem("userId")) return;
+  
+      const message = new TextEncoder().encode(
         "Get registered with ads-platform"
-    );
-
-
-    try {
-
-        const signature = await signMessage?.(message);
+      );
+  
+      try {
+        //@ts-ignore
+        const signature = await signMessage(message);
         console.log(signature);
         console.log(publicKey);
-        // @ts-ignore
-        const response = await axios.post(`${URL}/user/registerOrganization`, {
-            signature,
-            wallet_address: publicKey?.toString(),
-            name: "Zomato", // Dummy name
-            org_category: "Food delivery", // Dummy category
+  
+        const response = await axios.post(`${URL}/user/v2/register`, {
+          signature,
+          wallet_address: publicKey.toString(),
         });
-
-        //   console.table(response);
+  
         setAuthToken({
-            token: response.data.token,
-            api_key: response.data.api_key,
-            name: response.data.name
+          token: response.data.token,
+          api_key: response.data.api_key,
+          name: response.data.name,
         });
-
+        console.log(response);
+  
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.api_key);
-    } catch (e) {
+        localStorage.setItem("name", response.data.name);
+      } catch (e) {
         console.log("Err -> ", e);
         alert("Signin unsuccessful");
-    }
-}
-
-  useEffect(() => {
-    //@ts-ignore
-    localStorage.setItem("pubKey", publicKey?.toString());
+      }
+    };
+  
     signAndSend();
-  }, [publicKey]);
+  }, [publicKey, signMessage, URL, setAuthToken]);
 
   return (
     <Container>
