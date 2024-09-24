@@ -15,7 +15,7 @@ function Card({ image, title, views }) {
         <img
           src={image}
           alt="My Image"
-          style={{ width: "100%", height: "auto", borderRadius: "10px" }}
+          style={{ width: "350px", height: "200px", borderRadius: "10px" }}
         />
       </div>
       <div

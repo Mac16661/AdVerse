@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 // import styled from "styled-components";
 import Card from "../components/Card";
 import PopUpInput from "../components/PopUpInput";
+import axios from "axios";
 
+const URL = "https://localhost:8080";
 // const Button = styled.button`
 //   all: unset;
 //   cursor: pointer;
@@ -36,6 +39,34 @@ import PopUpInput from "../components/PopUpInput";
 // }
 
 function OrgPage() {
+  const [ads, setAds] = useState({});
+
+  const fetchData = async () => {
+    const response = await axios.get(`${URL}/ad/v2/getPublishedAds`, {
+      params: {
+        org_id: localStorage.getItem("userId"),
+      },
+    });
+
+    //@ts-ignore
+    const newAd = response.data;
+    //@ts-ignore
+
+    setAds(newAd);
+    //@ts-ignore
+    // console.log(typeof(newAd))
+    console.log(ads);
+    // return response.data;
+  };
+
+  useEffect(() => {
+    fetchData();
+
+    // return () => {
+
+    // }
+  }, []);
+
   return (
     <div>
       <Header />
@@ -58,14 +89,13 @@ function OrgPage() {
             gridColumnGap: "0px", // Reduce horizontal gap
           }}
         >
-          <Card image="/images/6.jpeg" title="CREATE AD" views="1M" />
-          <Card image="/images/1.jpg" title="CREATE AD" views="1M" />
-          <Card image="/images/3.jpg" title="CREATE AD" views="1M" />
-          <Card image="/images/4.jpg" title="CREATE AD" views="1M" />
-          <Card image="/images/5.jpeg" title="CREATE AD" views="1M" />
-          <Card image="/images/7.jpg" title="CREATE AD" views="1M" />
-          <Card image="/images/8.jpg" title="CREATE AD" views="1M" />
-          {/* <AddCard click={handleClick} /> */}
+            {Object.values(ads).map((ad) => (
+              //@ts-ignore
+              <div key={ad.id}>
+                {/* @ts-ignore */}
+                <Card image={ad.image} title={ad.name} views={ad.impression} />
+              </div>
+            ))}
         </div>
         <PopUpInput />
       </div>
