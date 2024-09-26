@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import PopUpInput from "../components/PopUpInput";
 import axios from "axios";
 
-const URL = "https://localhost:8080";
+const URL = "https://node-user-container-1050562161100.us-central1.run.app";
 // const Button = styled.button`
 //   all: unset;
 //   cursor: pointer;

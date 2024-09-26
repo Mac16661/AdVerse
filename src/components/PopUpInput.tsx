@@ -22,7 +22,7 @@ import {
 import * as buffer from "buffer";
 window.Buffer = buffer.Buffer;
 
-const URL = "https://localhost:8080";
+const URL = "https://node-user-container-1050562161100.us-central1.run.app";
 
 function PopUpInput() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,11 +34,9 @@ function PopUpInput() {
     platforms: [],
   });
 
-
   const [txSignature, setTxSignature] = useState("");
   const { publicKey, sendTransaction, signTransaction } = useWallet();
   const { connection } = useConnection();
-
 
   const handleClickOpen = () => {
     setIsOpen(true);
@@ -51,7 +49,6 @@ function PopUpInput() {
   //TODO: Saving ads
   //@ts-ignore
   const createAd = async (sig) => {
-
     if (localStorage.getItem("token")) {
       const { name, image, org_name } = formData;
       try {
@@ -79,11 +76,10 @@ function PopUpInput() {
 
         console.log(response.data);
         // @ts-ignore
-        // TODO: 
-        // const {available_balance, impression, imageRes, nameRes} = response.data; 
-        
+        // TODO:
+        // const {available_balance, impression, imageRes, nameRes} = response.data;
+        window.location.reload();
         return response.data;
-
       } catch (e) {
         console.log("err ocurred during axios req", e);
       }
@@ -91,8 +87,7 @@ function PopUpInput() {
     return { err: "internal err" };
   };
 
-
-  // TODO: Payment handling 
+  // TODO: Payment handling
   const payment = async () => {
     try {
       const transaction = new Transaction().add(
@@ -126,7 +121,6 @@ function PopUpInput() {
         console.log(response);
       }
       console.log("Transaction confirmation-> ", confirmation);
-      window.location.reload();
     } catch (e) {
       console.log("err ocurred during payment processing", e);
     }
@@ -137,7 +131,7 @@ function PopUpInput() {
     e.preventDefault();
     console.log("Input value:", formData);
     setIsOpen(false);
-    
+
     // TODO: First handle payment and then Save ads to the backend
     payment();
   };

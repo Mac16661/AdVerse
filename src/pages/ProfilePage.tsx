@@ -82,7 +82,7 @@ const SubmitButton = styled.button`
 `;
 
 
-const URL = "https://localhost:8080";
+const URL = "https://about.fb.com/wp-content/uploads/2021/10/Meta-Planets-img-16x9-1.jpg?w=1200";
 
 const ProfilePage = () => {
   const [formData, setFormData] = useState({
